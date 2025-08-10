@@ -6,6 +6,7 @@ class GoogleCrawler:
     def __init__(self, chrome_path='/usr/bin/google-chrome'):
         """初始化浏览器配置"""
         co = ChromiumOptions()
+        co = co.headless(True) # 开启无头模式，开发过程中可以设置为 False 以便调试
         co.set_argument('--no-sandbox')  # Linux/WSL 必加
         co.binary_location = chrome_path
         self.tab = Chromium(co).latest_tab
@@ -93,3 +94,4 @@ if __name__ == '__main__':
     gl = GoogleCrawler()
     gl.login('d4997086@gmail.com', 'dt12345678')
     print(gl.get_user_info_list('ai_drug_discovery'))
+
